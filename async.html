@@ -3,20 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>async</title>
 </head>
 
 <body>
-    <div id="dados"></div>
+<div id="dados"></div>
 
-    <div id="msg">
+<div id="msg">
 
-    </div>
+</div>
 
-    <div id="status">
+<div id="status">
 
-    </div>
+</div>
 
 </body>
 
@@ -48,22 +48,23 @@
         const fotos = await response.json();
         console.log("Faz o parse do JSON");
         console.log(fotos);
-        const dados = document.getElementById('dados');        
-        dados.innerHTML = '';       
-        
+        const dados = document.getElementById('dados');
+        dados.innerHTML = '';
+
         for (let i = 0; i < fotos.length; i++) {
             const imagem = document.createElement('img');
             imagem.src = fotos[i].url;
             dados.appendChild(imagem);
-        }    
+        }
 
     }
 
-    
-    carregarDados().then(()=>{const paragrafo = document.createElement('h2');
-    paragrafo.innerHTML= "Dados obtidos do servidor!";
-    dados.appendChild(paragrafo)})    
-    
+
+    carregarDados().then(() => {
+        const paragrafo = document.createElement('h2');
+        paragrafo.innerHTML = "Dados obtidos do servidor!";
+        dados.appendChild(paragrafo)
+    })
 
 
 </script>
