@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+
+<body>
+    <div id="dados"></div>
+
+    <div id="msg">
+
+    </div>
+
+    <div id="status">
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    /* versão complicada
+    //const url = "https://pokeapi.co/api/v2/pokemon/";
+    const url = "https://jsonplaceholder.typicode.com/photos";
+    const response = fetch(url);    
+
+    response.then(data=>console.log(data.json().then(fotosJason=> console.log(fotosJason))));
+    //faz o parse, ou seja, tenta converter o texto recebido para um objeto jason de fato
+    
+    //const fotos = response.json();
+
+    
+    //console.log(fotos);
+
+    console.log("Teminei de carregar as fotos")    const url = "https://jsonplaceholder.typicode.com/photos";
+
+    */
+
+    async function carregarDados() {
+
+        const url = "https://jsonplaceholder.typicode.com/photos";
+        const response = await fetch(url);
+        console.log("recebeu resposta da requisição");
+        const fotos = await response.json();
+        console.log("Faz o parse do JSON");
+        console.log(fotos);
+        const dados = document.getElementById('dados');        
+        dados.innerHTML = '';       
+        
+        for (let i = 0; i < fotos.length; i++) {
+            const imagem = document.createElement('img');
+            imagem.src = fotos[i].url;
+            dados.appendChild(imagem);
+        }    
+
+    }
+
+    
+    carregarDados().then(()=>{const paragrafo = document.createElement('h2');
+    paragrafo.innerHTML= "Dados obtidos do servidor!";
+    dados.appendChild(paragrafo)})    
+    
+
+
+</script>
